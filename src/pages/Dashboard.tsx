@@ -59,88 +59,88 @@ const Dashboard = () => {
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 p-6 ml-64">
+        <main className="flex-1 p-4 sm:p-6 lg:ml-64 pt-20 lg:pt-6">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, Alex!</h1>
+            <div className="mb-6 sm:mb-8">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Welcome back, Alex!</h1>
               <p className="text-gray-600">Continue your learning journey</p>
             </div>
 
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Enrolled Courses</CardTitle>
+                  <CardTitle className="text-xs sm:text-sm font-medium">Enrolled</CardTitle>
                   <BookOpen className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">3</div>
-                  <p className="text-xs text-muted-foreground">Active learning paths</p>
+                  <div className="text-xl sm:text-2xl font-bold">3</div>
+                  <p className="text-xs text-muted-foreground">Courses</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Learning Hours</CardTitle>
+                  <CardTitle className="text-xs sm:text-sm font-medium">Hours</CardTitle>
                   <Clock className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">24.5</div>
+                  <div className="text-xl sm:text-2xl font-bold">24.5</div>
                   <p className="text-xs text-muted-foreground">This month</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Completed</CardTitle>
+                  <CardTitle className="text-xs sm:text-sm font-medium">Completed</CardTitle>
                   <Users className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">59</div>
-                  <p className="text-xs text-muted-foreground">Lessons finished</p>
+                  <div className="text-xl sm:text-2xl font-bold">59</div>
+                  <p className="text-xs text-muted-foreground">Lessons</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Certificates</CardTitle>
+                  <CardTitle className="text-xs sm:text-sm font-medium">Certificates</CardTitle>
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">2</div>
-                  <p className="text-xs text-muted-foreground">Earned this year</p>
+                  <div className="text-xl sm:text-2xl font-bold">2</div>
+                  <p className="text-xs text-muted-foreground">Earned</p>
                 </CardContent>
               </Card>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-8">
               {/* Enrolled Courses */}
-              <div className="lg:col-span-2">
+              <div className="xl:col-span-2">
                 <Card>
                   <CardHeader>
                     <CardTitle>My Courses</CardTitle>
                     <CardDescription>Continue where you left off</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                  <CardContent className="space-y-4 sm:space-y-6">
                     {enrolledCourses.map((course) => (
-                      <div key={course.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                      <div key={course.id} className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 p-3 sm:p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                         <img 
                           src={course.image} 
                           alt={course.title}
-                          className="w-16 h-16 rounded-lg object-cover"
+                          className="w-full sm:w-16 h-32 sm:h-16 rounded-lg object-cover"
                         />
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900">{course.title}</h3>
-                          <p className="text-sm text-gray-600">by {course.instructor}</p>
-                          <div className="flex items-center space-x-4 mt-2">
+                        <div className="flex-1 w-full">
+                          <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{course.title}</h3>
+                          <p className="text-xs sm:text-sm text-gray-600">by {course.instructor}</p>
+                          <div className="flex items-center space-x-2 sm:space-x-4 mt-2">
                             <Progress value={course.progress} className="flex-1" />
-                            <span className="text-sm font-medium">{course.progress}%</span>
+                            <span className="text-xs sm:text-sm font-medium whitespace-nowrap">{course.progress}%</span>
                           </div>
-                          <div className="flex items-center justify-between mt-2">
-                            <p className="text-sm text-gray-500">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 space-y-1 sm:space-y-0">
+                            <p className="text-xs sm:text-sm text-gray-500">
                               {course.completedLessons}/{course.totalLessons} lessons
                             </p>
-                            <Badge variant="secondary">{course.category}</Badge>
+                            <Badge variant="secondary" className="self-start sm:self-auto">{course.category}</Badge>
                           </div>
                         </div>
-                        <Button size="sm" className="shrink-0">
+                        <Button size="sm" className="shrink-0 w-full sm:w-auto">
                           <PlayCircle className="w-4 h-4 mr-2" />
                           Continue
                         </Button>
@@ -150,8 +150,8 @@ const Dashboard = () => {
                 </Card>
               </div>
 
-              {/* Recent Activity */}
-              <div>
+              {/* Recent Activity & Learning Streak */}
+              <div className="space-y-6">
                 <Card>
                   <CardHeader>
                     <CardTitle>Recent Activity</CardTitle>
@@ -160,8 +160,8 @@ const Dashboard = () => {
                   <CardContent className="space-y-4">
                     {recentActivity.map((activity, index) => (
                       <div key={index} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                        <div className="flex-1">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></div>
+                        <div className="flex-1 min-w-0">
                           <p className="text-sm">
                             {activity.type === 'completed' && `Completed "${activity.lesson}" in ${activity.course}`}
                             {activity.type === 'quiz' && `Quiz score: ${activity.score} in ${activity.course}`}
@@ -174,7 +174,7 @@ const Dashboard = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="mt-6">
+                <Card>
                   <CardHeader>
                     <CardTitle>Learning Streak</CardTitle>
                   </CardHeader>
