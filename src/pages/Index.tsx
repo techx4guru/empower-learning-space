@@ -57,6 +57,8 @@ const Index = () => {
     { name: "Photography", courses: 45, icon: "📸" }
   ];
 
+  const year = new Date().getFullYear();
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -324,7 +326,7 @@ const Index = () => {
           </div>
           <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
             <p className="text-xs sm:text-sm text-gray-400">
-              © 2024 EduAcademy. All rights reserved.
+              © {year} TECH-X4. All rights reserved.
             </p>
           </div>
         </div>
