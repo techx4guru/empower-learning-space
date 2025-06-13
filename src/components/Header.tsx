@@ -78,20 +78,10 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* Right side icons */}
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            {/* Mobile search button */}
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="md:hidden p-2"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            >
-              <Search className="w-5 h-5" />
-            </Button>
-
-            {/* Wishlist - Hidden on small mobile */}
-            <Button variant="ghost" size="sm" className="relative p-2 hidden sm:flex">
+          {/* Right side icons - Desktop */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Wishlist */}
+            <Button variant="ghost" size="sm" className="relative p-2">
               <Heart className="w-5 h-5" />
             </Button>
 
@@ -105,8 +95,8 @@ const Header = () => {
               )}
             </Button>
 
-            {/* Notifications - Hidden on small mobile */}
-            <Button variant="ghost" size="sm" className="relative p-2 hidden sm:flex">
+            {/* Notifications */}
+            <Button variant="ghost" size="sm" className="relative p-2">
               <Bell className="w-5 h-5" />
               {notifications > 0 && (
                 <Badge className="absolute -top-1 -right-1 w-4 h-4 flex items-center justify-center text-xs bg-blue-500 p-0">
@@ -153,12 +143,25 @@ const Header = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+          </div>
+
+          {/* Mobile - Only show essential buttons */}
+          <div className="flex items-center space-x-2 md:hidden">
+            {/* Search button */}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="p-2"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
+              <Search className="w-5 h-5" />
+            </Button>
 
             {/* Mobile menu button */}
             <Button 
               variant="ghost" 
               size="sm" 
-              className="lg:hidden p-2"
+              className="p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -168,7 +171,21 @@ const Header = () => {
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4 space-y-2">
+          <div className="md:hidden border-t border-gray-200 py-4 space-y-2">
+            {/* User Profile Section */}
+            <div className="px-4 py-3 border-b border-gray-200">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-900">Alex Johnson</p>
+                  <p className="text-xs text-gray-500">alex@example.com</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Navigation */}
             <nav className="flex flex-col space-y-1 px-2">
               <Link 
                 to="/courses" 
@@ -191,7 +208,11 @@ const Header = () => {
               >
                 My Learning
               </Link>
-              <div className="border-t border-gray-200 pt-2 mt-2 sm:hidden">
+            </nav>
+
+            {/* Additional Mobile Options */}
+            <div className="border-t border-gray-200 pt-2 mt-2">
+              <nav className="flex flex-col space-y-1 px-2">
                 <Link 
                   to="/wishlist" 
                   className="text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-3 rounded-md text-base font-medium flex items-center"
@@ -199,6 +220,19 @@ const Header = () => {
                 >
                   <Heart className="w-5 h-5 mr-3" />
                   Wishlist
+                </Link>
+                <Link 
+                  to="/cart" 
+                  className="text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-3 rounded-md text-base font-medium flex items-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <ShoppingCart className="w-5 h-5 mr-3" />
+                  Cart
+                  {cartItems > 0 && (
+                    <Badge className="ml-auto w-5 h-5 flex items-center justify-center text-xs bg-red-500 p-0">
+                      {cartItems}
+                    </Badge>
+                  )}
                 </Link>
                 <Link 
                   to="/notifications" 
@@ -213,8 +247,29 @@ const Header = () => {
                     </Badge>
                   )}
                 </Link>
-              </div>
-            </nav>
+                <Link 
+                  to="/settings" 
+                  className="text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-3 rounded-md text-base font-medium flex items-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Settings className="w-5 h-5 mr-3" />
+                  Settings
+                </Link>
+              </nav>
+            </div>
+
+            {/* Sign Out */}
+            <div className="border-t border-gray-200 pt-2 mt-2">
+              <nav className="flex flex-col space-y-1 px-2">
+                <button 
+                  className="text-red-600 hover:bg-red-50 transition-colors py-3 px-3 rounded-md text-base font-medium flex items-center text-left w-full"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <LogOut className="w-5 h-5 mr-3" />
+                  Sign Out
+                </button>
+              </nav>
+            </div>
           </div>
         )}
       </div>
