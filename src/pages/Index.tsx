@@ -97,7 +97,7 @@ const Index = () => {
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-6 sm:px-8">
+                <Button size="lg" variant="outline" className="bg-white text-blue-600 hover:bg-white hover:text-blue-600 font-semibold px-6 sm:px-8">
                   Start Teaching
                 </Button>
               </div>
@@ -280,7 +280,7 @@ const Index = () => {
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-6 sm:px-8">
               Get Started Free
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-6 sm:px-8">
+            <Button size="lg" variant="outline" className="border-white text-blue-600 hover:bg-white hover:text-blue-600 font-semibold px-6 sm:px-8">
               Explore Premium
             </Button>
           </div>
